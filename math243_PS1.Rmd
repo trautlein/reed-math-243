@@ -5,10 +5,23 @@ date: "January 25, 2016"
 output: pdf_document
 ---
 
+\section{Best stat method}
+
+\section{classification or regression}
+
+\stepcounter{subsection}
+\section{real life applications}
+
 \section{}
+
+\section{}
+
+\section{}
+
 
 
 
 
 need to understand irreducible error better
 on page twenty-one
+
