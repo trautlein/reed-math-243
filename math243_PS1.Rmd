@@ -1,0 +1,14 @@
+---
+title: "Problem Set 1"
+author: "Hans Trautlein"
+date: "January 25, 2016"
+output: pdf_document
+---
+
+\section{}
+
+
+
+
+need to understand irreducible error better
+on page twenty-one
