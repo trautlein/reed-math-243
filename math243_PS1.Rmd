@@ -2,26 +2,84 @@
 title: "Problem Set 1"
 author: "Hans Trautlein"
 date: "January 25, 2016"
-output: html_document
+output: pdf_document
+header-includes:
+   - \usepackage{hyperref}
 ---
 
+Flexible - more likely to overfit (follow error/noise more than a good model would) but you also might increase the explanatory power of $f$ in the process.
 
-## 1
+On 1, ask for clarification about 1 and 2, what would be "flexible" vs. "inflexble." on 3, make sure non-linear relationships can still be fit in a flexible way
 
-
-## 2
-
-
-## 4
+## Book Problems
 
 
-## 5
+\begin{enumerate}
+  \item Indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible method. Justify my answer.\footnote{Every answer in this Problem Set has referred frequently to Chapter 2 in James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. \emph{An Introduction to Statistical Learning}. New York: Springer, 2013. I have also gotten help from }
+  \begin{enumerate}
+    \item A flexible method (to the degree that a model with a small amount of available predictors can be flexible) might be most appropriate, assuming that the 
+    \item You would want an inflexible method in this circumstance. If you have a small amount of variables you are more likely to have a model that is difficult to fit exactly, and the large amount of predictors might allow you to accidentally overfit the model.\footnote{Wonderful examples of what this can lead to are available on the Tyler Virgin's \href{http://www.tylervigen.com/spurious-correlations}{Spurious Correlations} website. Did you know that the \href{http://tylervigen.com/view_correlation?id=3991}{US's per capita consumption of mozzarella cheese highly correlates with people who die falling down the stairs}? This is a good example of correlation not equaling causation.}
+    \item This depends on whether or not there is some relationship at all betweent the predictors and the observations if you can map them to the function. Perhaps there is a non-linear relationship that explains the variables well, in which case a flexible relationship might be best.
+    \item If the variance of the error terms $\sigma^2 = Var(\epsilon$ is extremely high I would expect a less flexible model to be worse than an inflexible method because you might be more likely to overfit your model. In Nate Silver parlance your model would end up confusing the ``signal'' for the ``noise.''
+  \end{enumerate}
 
+  \item 
+    \begin{enumerate}
+      \item $n = 500$, $p = 4$. This a regression problem that is most interested in inference.
+      \item $n = 20$, $p = 14$. This is a classification problem that is most interested in prediction.
+      \item $n = 52$ (because of weekly data), $p = 4$. This is a regression problem that is most interested in prediction.
+    \end{enumerate}
+  
+  \setcounter{enumi}{3}
+  \item
+    \begin{enumerate}
+      \item Real-life applications of \emph{classification}. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain.
+        \begin{enumerate}
+          \item
+          \item
+          \item
+        \end{enumerate}
+        
+      \item Real-life applications of \emph{regression}. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain.
+       \begin{enumerate}
+          \item
+          \item
+          \item
+        \end{enumerate}
+        
+      \item Real-life applications of \emph{cluster analysis}.
+       \begin{enumerate}
+          \item
+          \item
+          \item
+        \end{enumerate}
+        
+    \end{enumerate}
+  
+  \item A very flexible model for regression and classification has both advantages and disadvantages
+  
+        A very inflexible model for regression and classification has both advantages and disadvantages as well, as it often is easier to make inferences from more inflexible methods compared to flexible methods. For example, if inference is the overall goal then you might prefer a less flexible model, like "least squares" or "subset selection lasso" as opposed to "support vector machines." The restriction inherent in more inflexible models makes inference easier.
+  
+        A more flexible approach might be preferred when prediction is weighed much heavier than inference in the model's goals. This is a slight oversimplification, but then the "why" takes a backseat to the "what," that is, the output that the model creator cares about is less a great understanding 
+  
+        A less flexible model might be preferred when 
+  
+  \item The differences between a parametric and a non-parametric statistical learning approach are 
+  
+        The advantages of a parametric approach as opposed to a non-parametric approach are 
+        
+        The disadvantages of a parametric approach are 
+  
+  \item
+    \begin{enumerate}
+      \item
+      \item My prediction when $K = 1$ is 
+      \item My prediction when $K = 3$ is 
+      \item
+    \end{enumerate}
 
-## 6
+\end{enumerate}
 
-
-## 7
 
 
 ## Additional exercise
