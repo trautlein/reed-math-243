@@ -20,9 +20,9 @@ header-includes:
 
   \item 
     \begin{enumerate}
-      \item $n = 500$, $p = 4$. This a regression problem that is most interested in inference.
-      \item $n = 20$, $p = 14$. This is a classification problem that is most interested in prediction.
-      \item $n = 52$ (because of weekly data), $p = 4$. This is a regression problem that is most interested in prediction.
+      \item $n = 500$, $p = 3$. This a regression problem that is most interested in inference.
+      \item $n = 20$, $p = 13$. This is a classification problem that is most interested in prediction.
+      \item $n = 52$ (because of weekly data), $p = 3$. This is a regression problem that is most interested in prediction.
     \end{enumerate}
   
   \setcounter{enumi}{3}
