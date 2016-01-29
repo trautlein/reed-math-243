@@ -4,10 +4,7 @@
     \usepackage{fullpage}
     \usepackage{microtype}
     \usepackage{enumerate}
-    \usepackage{mathpazo}
-    \usepackage{graphicx}
     \usepackage{amsmath}
-    \usepackage{hyperref}
 
     \begin{document}    
     
@@ -21,10 +18,10 @@
 \begin{enumerate}
   \item Indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible method. Justify my answer.\footnote{Every answer in this Problem Set has referred frequently to Chapter 2 in James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. \emph{An Introduction to Statistical Learning}. New York: Springer, 2013. I have also gotten help from }
   \begin{enumerate}
-    \item A flexible method (to the degree that a model with a small amount of available predictors can be flexible) might be most appropriate, assuming that the 
-    \item You would want an inflexible method in this circumstance. If you have a small amount of variables you are more likely to have a model that is difficult to fit exactly, and the large amount of predictors might allow you to accidentally overfit the model.\footnote{Wonderful examples of what this can lead to are available on the Tyler Virgin's \href{http://www.tylervigen.com/spurious-correlations}{Spurious Correlations} website. Did you know that the \href{http://tylervigen.com/view_correlation?id=3991}{US's per capita consumption of mozzarella cheese highly correlates with people who die falling down the stairs}? This is a good example of correlation not equaling causation.}
-    \item This depends on whether or not there is some relationship at all betweent the predictors and the observations if you can map them to the function. Perhaps there is a non-linear relationship that explains the variables well, in which case a flexible relationship might be best.
-    \item If the variance of the error terms, $\sigma^2 = Var(\epsilon)$, is extremely high I would expect a less flexible model to be worse than an inflexible method because you might be more likely to overfit your model. In Nate Silver parlance your model would end up confusing the ``signal'' for the ``noise.''
+    \item A flexible method would be appropriate, as you will get a better ``fit'' on the data with a more flexible approach and you have a large enough $n$ to avoid the issues of using a flexible model with a small $n$.
+    \item You would want an inflexible method in this circumstance. If you have a small amount of variables you are more likely to have a model that is difficult to fit exactly, and the large amount of predictors might allow you to accidentally the model.
+    \item 
+    \item If the variance of the error terms, $\sigma^2 = Var(\epsilon)$, is extremely high I would expect a flexible model to be worse than an inflexible method because you might be more likely to overfit your model. In Nate Silver parlance your model would end up confusing the ``signal'' for the ``noise.''
   \end{enumerate}
 
   \item 
@@ -60,21 +57,35 @@
         
     \end{enumerate}
   
-  \item A very inflexible model for regression and classification has both advantages and disadvantages as well, as it often is easier to make inferences from more inflexible methods compared to flexible methods. For example, if inference is the overall goal then you might prefer a less flexible model, like "least squares" or "subset selection lasso" as opposed to "support vector machines." The restriction inherent in more inflexible models makes inference easier.
+  \item A very inflexible model for regression and classification has both advantages and disadvantages as well, as it often is easier to make inferences from more inflexible methods compared to flexible methods. For example, if inference is the overall goal then you might prefer a less flexible model, like ``least squares'' or ``subset selection lasso'' as opposed to ``support vector machines.'' The restriction inherent in more inflexible models makes inference easier.
  
-        A more flexible approach might be preferred when prediction is weighed much heavier than inference in the model's goals. This is a slight oversimplification, but then the "why" takes a backseat to the "what," that is, the output that the model creator cares about is less a great understanding of the inner workings of the model and why it works that way but instead that the model has the best output possible. This might not be the best approach in the long run though - to at least a tiny degreee you want to understand your models! But adding every variable that you have into the model might result in overfitting. This is further explained on page 26 of the text for this course in section 2.1.3, \emph{The Trade-Off Between Prediction Accuracy and Model Interpretability}.
+        A more flexible model allows you to reduce ``bias'' and also fit models that are more complicated that might only be explainable by a simpler and more inflexible model. A more flexible approach might be preferred when prediction is weighed much heavier than inference in the model's goals. This is a slight oversimplification, but then the ``why'' takes a backseat to the ``what,'' that is, the output that the model creator cares about is less a great understanding of the inner workings of the model and why it works that way but instead that the model has the best output possible. This might not be the best approach in the long run though - to at least a tiny degreee you want to understand your models! But adding every variable that you have into the model might result in overfitting. This is further explained on page 26 of the text for this course in section 2.1.3, \emph{The Trade-Off Between Prediction Accuracy and Model Interpretability}.
   
         Overall, flexibility is preferred when you are looking for great prediction and inflexibility is prized when you are looking for easy inference.
   
   \item The differences between a parametric and a non-parametric statistical learning approach are 
   
-        The advantages of a parametric approach as opposed to a non-parametric approach are 
+        The advantages of a parametric approach as opposed to a non-parametric approach are that you already have an assumed ``form'' for the model (linear) so you only have to estimate the coefficients on the variables that you choose to use, instead of having to also figure out whether or not they are going to have some exponent added to them.
         
-        The disadvantages of a parametric approach are 
+        Disadvantages parametric approachs are also present though. Parametric approaches might oversimplify the form of the proper function for the best achievable model as the form might be different than the linear form assumed.
   
   \item
     \begin{enumerate}
-      \item
+      \item I have placed my answers in the table below:
+        
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{l|llll|c} \hline
+                Obs. & $X_1$ & $X_2$ & $X_3$ & $Y$   & Distance       \\ \hline
+                1    & 0     & 3     & 0     & Red   & 3              \\
+                2    & 2     & 0     & 0     & Red   & 2              \\
+                3    & 0     & 1     & 3     & Red   & $\sqrt{10}$    \\
+                4    & 0     & 1     & 2     & Green & $\sqrt{5} $    \\
+                5    & -1    & 0     & 1     & Green & $\sqrt{2} $    \\
+                6    & 1     & 1     & 1     & Red   & $\sqrt{3} $    \\ \hline
+            \end{tabular}
+        \end{table}
+
       \item My prediction when $K = 1$ is 
       \item My prediction when $K = 3$ is 
       \item
@@ -111,10 +122,12 @@ $$ \mathbf{X} =
 
 $$ \mathbf{X} = 
   \begin{pmatrix}
-    x_{1,1} & \cdots & x_{1, 64^2} \\
+    x_{1,1} & \cdots & x_{1, 15} \\
     \vdots  & \ddots & \vdots  \\
-    x_{10,1} & \cdots & x_{10, 64^2} 
+    x_{10,1} & \cdots & x_{10, 15} 
 \end{pmatrix} $$
+
+Here it is suggested that there are fifteen different factors that we will pulled out of our input and will end up using in our model. For example, the first factor could be a dummy variable of whether or not the hair is more than 50\% grey, the second factor could be nose length (cm), the third factor could be whether or not crows feet are visible, the fourth factor could be whether or not the person is bald, etc...this would correspond to the columns up above, with each factor having it's own column, and each factor respresented once for each observation.
 
 \subsection*{Output}
 
