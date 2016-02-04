@@ -1,0 +1,57 @@
+%Header
+    \documentclass[11pt]{article}
+    \usepackage{indentfirst}
+    \usepackage{fullpage}
+    \usepackage{microtype}
+    \usepackage{enumerate}
+    \usepackage{amsmath}
+    \usepackage{courier}
+
+    \begin{document}    
+    
+\noindent{\large
+    Hans Trautlein          \hfill Problem Set 2: Chapter 3\ \ \\
+    Due: February 5, 2016   \hfill Andrew Bray}
+\bigskip
+
+\section*{Book Problems}
+
+
+\begin{enumerate}
+	\item \textit{Describe the null hypotheses to which the p-values given in Table 3.4 correspond. Explain what conclusions you can draw based on these p-values. Your explanation should be phrased in terms of \texttt{sales}, TV, radio, and newspaper, rather than in terms of the coefficients of the linear model.}
+	
+  	\setcounter{enumi}{4}
+
+	\item \textit{Consider the fitted values that result from performing linear regres- sion without an intercept. In this setting, the $i$th fitted value takes the form}
+	
+	$$ \hat{y}_i = x_i\hat{\beta},$$
+	
+	\textit{where}
+	
+	$$ \hat{\beta} = \left(\sum_{i=1}^nx_iy_i\right) / \left(\sum_{i'=1}^nx_{i'}^2\right).$$
+	
+	%\sum_{i=1}^nx_iy_i \right  \left \sum_{i=1}^nx_{i'}^2
+	
+	\textit{Show that we can write}
+	
+	$$ \hat{y}_i = \sum_{i'=1}^na_{i'}y_{i'}.$$
+	
+	\textit{What is $a_{i'}$?}
+	
+	\textit{Note: We interpret this result by saying that the fitted values from linear regression are linear combinations of the response values.}
+	
+	\item \textit{Using (3.4), argue that in the case of simple linear regression, the
+least squares line always passes through the point (x?, y?).
+}
+	
+\end{enumerate}
+
+
+\section*{Challenge Problem}
+Use the identities for expected value and variance to derive the bias-variance decomposition of 
+
+$$ E\left[ \left(y - \hat{f}(x) \right)^2 \right]$$
+
+
+\end{document}
+
