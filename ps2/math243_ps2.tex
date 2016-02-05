@@ -29,7 +29,29 @@
          
     \end{description}
 	
-  	\setcounter{enumi}{4}
+  	\setcounter{enumi}{3}
+
+    \item \textit{I collect a set of data($n = 100$ observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. $Y = \beta_0 + \beta_1X + \beta_2X^2 + \beta_3X^3 + \epsilon.$}
+
+    \begin{enumerate}
+        \item \textit{Suppose tha tthe true realtionship between X and Y is linear, i.e. $Y = \beta_0 + \beta_1X + \epsilon.$ Consider the training residual sum of squares (RSS) for the linear regression, and also the training RSS for the cubic regression. Would we expect one to be lower than the other, would we expect them to be the same, or is there not enough information to tell? Justify your answer.}
+
+        Polynomial regression here should have a lower training RSS than a normal linear regression \textit{because} of the possibility for a tighter fit of the data.
+
+        \item \textit{Answer (a) using test rather than training RSS.}
+
+        This is the opposite as in part (a). Here the polynomial regression should have a larger/higher test RSS. The linear regression would have less error than the test RSS here, which could likely result in a model that overfollows the ``noise'' that it finds in the data, leading to overfitting.
+
+        \item \textit{Supposed that the true realtionship between X and Y is not linear, but we don't know how far it is from linear. Consider the training RSS for the linear regression, and also the training RSS for the cubic regression. Would we expect one to be lower than the other, would we expect them to be the same, or is there not enough information to tell? Justify your answer.}
+
+        Sort of related to answer (a), again we will see that this polynomial regression will have a lower training RSS when compared to the linear fit option, again due to the tigther fit of the data (higher flexibility).
+
+        \item \textit{Answer (c) using test rather than training RSS.}
+
+        Not enough info. The training RSS could be both higher and lower. What if a linear model is the right model? Or a non-linear model is the right sort of model? There isn't enough here to say what which would be lower than the other/same.
+
+    \end{enumerate}
+
 	\item \textit{Consider the fitted values that result from performing linear regression without an intercept. In this setting, the $i$th fitted value takes the form}
 	
 	$$ \hat{y}_i = x_i\hat{\beta},$$
@@ -44,13 +66,35 @@
 	
 	$$ \hat{y}_i = \sum_{i'=1}^na_{i'}y_{i'}.$$
 	
-	\textit{What is $a_{i'}$?}
-	
-	\textit{Note: We interpret this result by saying that the fitted values from linear regression are linear combinations of the response values.}
+	\textit{What is $a_{i'}$?}\footnote{Note: We interpret this result by saying that the fitted values from linear regression are linear combinations of the response values.}
+
+    \begin{align*}
+        \hat{y}_i &= x_i\hat{\beta} \\
+        \hat{\beta} &= \frac{\sum x_i y_i}{\sum x_i^2} \Rightarrow \\
+        \hat{y}_i &= x_i \left(\frac{\sum x_i' y_i'}{\sum x_i^2}\right) \Rightarrow \\
+        \hat{y}_i &= \sum_i\left(\frac{x_i'x_i}{\sum_jx_j^2}\right) y_i' \Longrightarrow \\
+        a_i' &= \frac{x_i'x_i}{\sum_j x_j^2}
+    \end{align*}
+
+    
 	
 	\item \textit{Using (3.4), argue that in the case of simple linear regression, the
-least squares line always passes through the point (x?, y?).
-}
+least squares line always passes through the point $(\bar{x}, \bar{y}).$\footnote{I talked to a friend from another college (an engineer who is much better at math than I am) and they helped me come to this elegant solution.}}
+    
+
+        \begin{equation} \tag{3.4}
+            \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+        \end{equation}
+
+    That is equation 3.4 above, we will use it substitute it below to help us prove that the least squares line passes through the point $(\bar{x}, \bar{y}).$ 
+
+    \begin{align*}
+        y &= \hat{\beta}_0 + \hat{\beta}_1 x \\
+        0 &= \hat{\beta}_0 + \hat{\beta}_1 \bar{x} - \bar{y} \\
+        0 &= (\bar{y} - \hat{\beta}_1 \bar{x}) + \hat{\beta}_1 \bar{x} - \bar{y} \\
+    \end{align*}
+
+    The above equation clearly simplifies to $0=0$, showing us taht the least squares line does in fact go through a point that would be the means of both $x$ and $y$.
 	
 \end{enumerate}
 
@@ -63,6 +107,10 @@ $$ E\left[ \left(y - \hat{f}(x) \right)^2 \right].$$
 $E(c) = c,$ where $c$ is constant.
 
 $Var(X) = E(X^2) - [E(X)]^2$ 
+
+\vspace{1cm}
+
+I'm sorry I didn't have time to take a crack at this. I'd still love to see it in the problem set key though! Thanks!
 
 \end{document}
 
