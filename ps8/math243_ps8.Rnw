@@ -1,0 +1,145 @@
+%Header
+    \documentclass[11pt]{article}
+    \usepackage{indentfirst}
+    \usepackage{fullpage}
+    \usepackage{microtype}
+    \usepackage{enumerate}
+    \usepackage{amsmath}
+    \usepackage{courier}
+    \usepackage[utf8]{inputenc}
+	\usepackage[english]{babel}
+
+
+    \begin{document}    
+    
+\noindent{\large
+    Hans Trautlein          \hfill Problem Set 8\ \ \\
+    Due: April 15, 2016      \hfill Andrew Bray}
+\bigskip
+
+\section*{Chapter 10}
+
+    \begin{enumerate}
+    
+    	\item \textit{This problem involves the $K$-means clustering algorithm.}
+			\begin{enumerate}
+				\item \textit{Prove the equation below.}
+				
+				$$ \frac{1}{|C_k|} \sum_{i,i' \in C_k} \sum^p_{j=1} (x_{ij} - x_{i'j})^2 
+					= 2\sum_{i \in C_k} \sum^p_{j=1} (x_{ij} - \bar{x}_{kj})^2 $$
+				$$ = \frac{1}{|C_k|} \sum\limits_{i,i^{\prime} \in C_k} \sum\limits_{j=1}^p ((x_{ij} - \bar{x}_{kj}) - (x_{i^\prime j} - \bar{x}_{kj}))^2 $$
+				
+				$$ = \frac{|C_k|}{|C_k|} \sum\limits_{i \in C_k} \sum\limits_{j=1}^p (x_{ij} - \bar{x}_{kj})^2 +
+  \frac{|C_k|}{|C_k|} \sum\limits_{i^{\prime} \in C_k} \sum\limits_{j=1}^p (x_{i^\prime j} - \bar{x}_{kj})^2 -
+  \frac{2}{|C_k|} \sum\limits_{i,i^{\prime} \in C_k} \sum\limits_{j=1}^p (x_{ij} - \bar{x}_{kj})(x_{i^\prime j} - \bar{x}_{kj}) $$
+  
+        $$ = 2 \sum\limits_{i \in C_k} \sum\limits_{j=1}^p (x_{ij} - \bar{x}_{kj})^2 $$
+				
+				\item \textit{On the basis of this identity, argue that the K-means clustering algorithm (Algorithm 10.1) decreases the objective (10.11) at each iteration.}
+				
+				Minimizing the in-cluster variance across clusters, as seen above, is the same thing as minimizing the Euclidean distance for each cluster.
+				
+			\end{enumerate}
+	    
+        \setcounter{enumi}{2}
+		
+		\item \textit{In this problem, you will perform K-means clustering manually, with $K = 2$, on a small example with $n = 6$ observations and $p = 2$ features. The observations are as follows.}
+		
+    		\begin{table}[h]
+                \centering
+                \begin{tabular}{c|cc} \hline
+                Obs. & $X_1$ & $X_2$ \\ \hline
+                1    & 1     & 4     \\
+                2    & 1     & 3     \\
+                3    & 0     & 4     \\
+                4    & 5     & 1     \\
+                5    & 6     & 2     \\
+                6    & 4     & 0    \\ \hline
+                \end{tabular}
+            \end{table}
+            
+                <<echo=FALSE>>=
+                set.seed(22)
+                x = cbind(c(1, 1, 0, 5, 6, 4), c(4, 3, 4, 1, 2, 0))
+                @
+
+            \begin{enumerate}
+				\item \textit{Plot the observations.}
+			
+                <<fig.align="center", fig.width=5, fig.height=4>>=
+                plot(x[,1], x[,2])
+			    @
+	
+				\item \textit{Randomly assign a cluster label to each observation. You can use the sample() command in R to do this. Report the cluster labels for each observation.}		
+
+                <<>>=
+                labs = sample(2, nrow(x), replace=TRUE)
+                labs
+                @
+				
+				\item \textit{Compute the centroid for each cluster.}
+			    <<>>=
+cent1 = c(mean(x[labs == 1, 1]), mean(x[labs == 1, 2]))
+cent2 = c(mean(x[labs == 2, 1]), mean(x[labs == 2, 2]))
+cent1
+cent2
+                @	
+
+				\item \textit{Assign each observation to the centroid to which it is closest, in terms of Euclidean distance. Report the cluster labels for each observation.}
+
+<<echo=FALSE>>=
+eu <- function(a, b) {
+  return(sqrt((a[1] - b[1])^2 + (a[2]-b[2])^2))
+}
+assign_labs <- function(x, cent1, cent2) {
+  labs <- rep(NA, nrow(x))
+  for (i in 1:nrow(x)) {
+    if (eu(x[i,], cent1) < eu(x[i,], cent2)) {
+      labs[i] = 1
+    } else {
+      labs[i] = 2
+    }
+  }
+  return(labs)
+}
+@
+
+
+<<>>=
+# in code have function that finds labs, echo set to F
+labs <- assign_labs(x, cent1, cent2)
+labs
+                @
+				
+				\item \textit{In your plot from (a), color the observations according to the cluster labels obtained.}
+
+    <<fig.align="center", fig.height=5, fig.width=5, echo=F>>=
+plot(x[,1], x[,2], col=(labs+4), pch=(labs+18), cex=2)
+
+points(cent1[1], cent1[2], col=5, pch=4)
+points(cent2[1], cent2[2], col=6, pch=4)
+    @
+
+            
+            \end{enumerate}
+
+
+
+        \setcounter{enumi}{4}
+		
+		\item \textit{In words, describe the results that you would expect if you performed $K$-means clustering of the eight shoppers in Figure 10.14, on the basis of their sock and computer purchases, with $K = 2$. Give three answers, one for each of the variable scalings displayed. Explain.}
+		
+		\begin{enumerate}
+			\item More computers and socks (1, 2, 7, 8) versus least socks and computer (3, 4, 6, 8).
+			\item No computer (1, 2, 3, 4) versus a computer (5, 6, 7, 8). Distance is smaller on socks dimension whereas it is larger on the computer dimension. 
+			
+			\item (Similar to above) No computer (1, 2, 3, 4) against a computer (5, 6, 7, 8).
+			
+		\end{enumerate}
+		
+    \end{enumerate}
+
+
+
+\end{document}
+
